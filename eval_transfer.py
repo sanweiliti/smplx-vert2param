@@ -18,7 +18,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--data_root', type=str, default='data')
 parser.add_argument('--fitting_stage', type=str, default='pose', choices=['shape', 'pose'])
 parser.add_argument('--sub_id', type=str, default='sub_0')
-parser.add_argument('--seq_name', type=str, default='smplx_N_HANDS_touch_squeeze_fingers_palm')
+parser.add_argument('--seq_name', type=str, default='smplx_N_HANDS_interlock_fingers')
 parser.add_argument('--vis_frame', default='False', type=lambda x: x.lower() in ['true', '1'])
 parser.add_argument('--vis_interval', default=1000, type=int)
 parser.add_argument('--vis_seq', default='False', type=lambda x: x.lower() in ['true', '1'])
@@ -87,13 +87,13 @@ if __name__ == '__main__':
     v2v_error_hand_list = []
     v2v_error_body_list = []
     v2v_error_head_list = []
-    jitter_hand_list = []
-    jitter_body_list = []
     source_vert_list, result_vert_list = [], []
+    # source_vert_list = np.zeros([len(frame_list), 10475, 3], dtype=np.float32)
+    # result_vert_list = np.zeros([len(frame_list), 10475, 3], dtype=np.float32)
 
     ############### evaluation / visualization
     print('[INFO] evaluating...')
-    for t, frame_name in tqdm(enumerate(frame_list)):   # [::50]
+    for t, frame_name in tqdm(enumerate(frame_list)):
         frame_name = frame_name.split('/')[-1].split('.')[0]
 
         ############## read data and get vertices

@@ -1,0 +1,7 @@
+python main_fitting.py --exp-cfg config_files/mesh2param_pose.yaml --exp-opts data_folder=data/input_npy/sub_0/smplx_N_HAND_free_hand_no_occlusion output_folder=data/fitting_results/sub_0/smplx_N_HAND_free_hand_no_occlusion shape_dict_path=data/fitting_shape/sub_0/shape_face_fitting.pkl
+
+python main_fitting.py --exp-cfg config_files/mesh2param_pose.yaml --exp-opts data_folder=data/input_npy/sub_0/smplx_N_HANDS_interlock_fingers output_folder=data/fitting_results/sub_0/smplx_N_HANDS_interlock_fingers shape_dict_path=data/fitting_shape/sub_0/shape_face_fitting.pkl
+
+python main_fitting.py --exp-cfg config_files/mesh2param_pose.yaml --exp-opts data_folder=data/input_npy/sub_0/smplx_N_HANDS_touch_squeeze_fingers_palm output_folder=data/fitting_results/sub_0/smplx_N_HANDS_touch_squeeze_fingers_palm shape_dict_path=data/fitting_shape/sub_0/shape_face_fitting.pkl
+
+python main_fitting.py --exp-cfg config_files/mesh2param_pose.yaml --exp-opts data_folder=data/input_npy/sub_0/smplx_N_CON_charades output_folder=data/fitting_results/sub_0/smplx_N_CON_charades shape_dict_path=data/fitting_shape/sub_0/shape_face_fitting.pkl

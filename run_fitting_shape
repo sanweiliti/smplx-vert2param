@@ -1,0 +1,3 @@
+python write_mesh_obj.py --data_root=data --sub_id=sub_0 --seq_name_list=smplx_N_CON_charades,smplx_N_HAND_free_hand_no_occlusion,smplx_N_HANDS_interlock_fingers,smplx_N_HANDS_touch_squeeze_fingers_palm
+
+python main_fitting.py --exp-cfg config_files/mesh2param_shape.yaml --exp-opts data_folder=data/fitting_shape/sub_0/input_obj output_folder=data/fitting_shape/sub_0/fitting_params

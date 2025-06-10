@@ -402,8 +402,8 @@ def run_fitting_chain(
     ######################## optimize with ADAM for faster convergence
     if not shape_fitting:
         # logger.info(f'[Stage 3]: fitting with V2V and pose priors (Adam)')
-        adam_lr_list = [0.01, 0.001, 0.0001]
-        ftol_list = [1e-6, 1e-7, 1e-7]
+        adam_lr_list = [0.01, 0.001, 0.0003]
+        ftol_list = [1e-5, 1e-7, 1e-7]
         for stage in range(len(adam_lr_list)):
             logger.info(f'[Stage {stage + 3}]: fitting with V2V and pose priors (Adam lr={adam_lr_list[stage]})...')
             optimizer = optim.Adam(list(var_dict.values()), lr=adam_lr_list[stage])

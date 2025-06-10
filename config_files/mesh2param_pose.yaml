@@ -1,5 +1,5 @@
-data_folder: 'data/input_npy/sub_0/smplx_N_HANDS_touch_squeeze_fingers_palm'  # todo smplx_N_CON_charades smplx_N_HAND_free_hand_no_occlusion smplx_N_HANDS_interlock_fingers smplx_N_HANDS_touch_squeeze_fingers_palm
-output_folder: 'data/fitting_results/sub_0/smplx_N_HANDS_touch_squeeze_fingers_palm'  # todo
+data_folder: 'data/input_npy/sub_0/smplx_N_CON_charades'  # todo smplx_N_CON_charades smplx_N_HAND_free_hand_no_occlusion smplx_N_HANDS_interlock_fingers smplx_N_HANDS_touch_squeeze_fingers_palm
+output_folder: 'data/fitting_results/sub_0/smplx_N_CON_charades'  # todo
 
 num_workers: 0
 batch_size: 100
