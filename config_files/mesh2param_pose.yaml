@@ -1,0 +1,29 @@
+data_folder: 'data/input_npy/sub_0/smplx_N_HANDS_touch_squeeze_fingers_palm'  # todo smplx_N_CON_charades smplx_N_HAND_free_hand_no_occlusion smplx_N_HANDS_interlock_fingers smplx_N_HANDS_touch_squeeze_fingers_palm
+output_folder: 'data/fitting_results/sub_0/smplx_N_HANDS_touch_squeeze_fingers_palm'  # todo
+
+num_workers: 0
+batch_size: 100
+
+shape_fitting: False
+load_shape: True
+shape_dict_path: 'data/fitting_shape/sub_0/shape_face_fitting.pkl' # todo
+
+summary_steps: 100
+
+device_id: 0
+
+optim:
+    type: 'lbfgs'
+    maxiters: 10
+    gtol: 1e-06
+    ftol: 1e-06
+
+body_model:
+    model_type: "smplx"
+    gender: "neutral"
+    folder: "smplx_data/smplx_models_lockedhead"
+    use_compressed: False
+    use_face_contour: True
+    num_betas: 300
+    num_expression_coeffs: 100
+

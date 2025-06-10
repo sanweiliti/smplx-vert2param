@@ -1,0 +1,29 @@
+data_folder: 'data/fitting_shape/sub_0/input_obj'
+output_folder: 'data/fitting_shape/sub_0/fitting_params'
+
+num_workers: 0
+batch_size: 100
+
+shape_fitting: True
+load_shape: False
+shape_dict_path: ''
+
+summary_steps: 10
+
+device_id: 0
+
+optim:
+    type: 'lbfgs'
+    maxiters: 200
+    gtol: 1e-06
+    ftol: 1e-06
+
+body_model:
+    model_type: "smplx"
+    gender: "neutral"
+    folder: "smplx_data/smplx_models_lockedhead"
+    use_compressed: False
+    use_face_contour: True
+    num_betas: 300
+    num_expression_coeffs: 100
+
