@@ -18,10 +18,10 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--data_root', type=str, default='data')
 parser.add_argument('--fitting_stage', type=str, default='pose', choices=['shape', 'pose'])
 parser.add_argument('--sub_id', type=str, default='sub_0')
-parser.add_argument('--seq_name', type=str, default='smplx_N_CON_charades')
+parser.add_argument('--seq_name', type=str, default='smplx_N_HAND_free_hand_no_occlusion')
 parser.add_argument('--vis_frame', default='False', type=lambda x: x.lower() in ['true', '1'])
 parser.add_argument('--vis_interval', default=1000, type=int)
-parser.add_argument('--vis_seq', default='False', type=lambda x: x.lower() in ['true', '1'])
+parser.add_argument('--vis_seq', default='True', type=lambda x: x.lower() in ['true', '1'])
 args = parser.parse_args()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -93,7 +93,7 @@ if __name__ == '__main__':
 
     ############### evaluation / visualization
     print('[INFO] evaluating...')
-    for t, frame_name in tqdm(enumerate(frame_list[6000:])):
+    for t, frame_name in tqdm(enumerate(frame_list)):
         frame_name = frame_name.split('/')[-1].split('.')[0]
 
         ############## read data and get vertices
@@ -136,41 +136,41 @@ if __name__ == '__main__':
                 o3d.visualization.draw_geometries([result_mesh_o3d, source_mesh_o3d])
 
         if args.vis_seq:
-            # source_mesh.visual.vertex_colors = [0.8, 0.8, 0.8, 1.0]
-            # source_mesh_copy = copy.deepcopy(source_mesh)
-            # trans_mat = np.array([[1, 0, 0, 1.2],
-            #                       [0, 1, 0, 0],
-            #                       [0, 0, 1, 0],
-            #                       [0, 0, 0, 1]])
-            # source_mesh_copy.apply_transform(trans_mat)
-            # source_mesh_pyrender = pyrender.Mesh.from_trimesh(source_mesh)
-            # source_mesh_copy_pyrender = pyrender.Mesh.from_trimesh(source_mesh_copy)
+            source_mesh.visual.vertex_colors = [0.8, 0.8, 0.8, 1.0]
+            source_mesh_copy = copy.deepcopy(source_mesh)
+            trans_mat = np.array([[1, 0, 0, 1.2],
+                                  [0, 1, 0, 0],
+                                  [0, 0, 1, 0],
+                                  [0, 0, 0, 1]])
+            source_mesh_copy.apply_transform(trans_mat)
+            source_mesh_pyrender = pyrender.Mesh.from_trimesh(source_mesh)
+            source_mesh_copy_pyrender = pyrender.Mesh.from_trimesh(source_mesh_copy)
 
             result_mesh.visual.vertex_colors = [66 / 255, 149 / 255, 245 / 255, 1.0]  # light blue
-            # result_mesh_copy = copy.deepcopy(result_mesh)
+            result_mesh_copy = copy.deepcopy(result_mesh)
             trans_mat = np.array([[1, 0, 0, -1.2],
                                   [0, 1, 0, 0],
                                   [0, 0, 1, 0],
                                   [0, 0, 0, 1]])
-            # result_mesh_copy.apply_transform(trans_mat)
+            result_mesh_copy.apply_transform(trans_mat)
             result_mesh_pyrender = pyrender.Mesh.from_trimesh(result_mesh)
-            # result_mesh_copy_pyrender = pyrender.Mesh.from_trimesh(result_mesh_copy)
+            result_mesh_copy_pyrender = pyrender.Mesh.from_trimesh(result_mesh_copy)
 
             viewer.render_lock.acquire()
             if t > 0:
-                # scene.remove_node(source_node)
+                scene.remove_node(source_node)
                 scene.remove_node(result_node)
-                # scene.remove_node(source_copy_node)
-                # scene.remove_node(result_copy_node)
+                scene.remove_node(source_copy_node)
+                scene.remove_node(result_copy_node)
 
-            # source_node = pyrender.Node(mesh=source_mesh_pyrender, name='scan')
-            # scene.add_node(source_node)
+            source_node = pyrender.Node(mesh=source_mesh_pyrender, name='scan')
+            scene.add_node(source_node)
             result_node = pyrender.Node(mesh=result_mesh_pyrender, name='scan')
             scene.add_node(result_node)
-            # source_copy_node = pyrender.Node(mesh=source_mesh_copy_pyrender, name='scan')
-            # scene.add_node(source_copy_node)
-            # result_copy_node = pyrender.Node(mesh=result_mesh_copy_pyrender, name='scan')
-            # scene.add_node(result_copy_node)
+            source_copy_node = pyrender.Node(mesh=source_mesh_copy_pyrender, name='scan')
+            scene.add_node(source_copy_node)
+            result_copy_node = pyrender.Node(mesh=result_mesh_copy_pyrender, name='scan')
+            scene.add_node(result_copy_node)
 
             viewer.render_lock.release()
             # time.sleep(0.5)
